@@ -72,6 +72,8 @@ public class Calender : MonoBehaviour
         UpdateCalender(DateTime.Now.Year, DateTime.Now.Month);
     }
 
+    
+
     //Anytime the calender is changed we call this to make sure we have the right days for the right month/year
     void UpdateCalender(int year, int month)
     {
@@ -81,17 +83,23 @@ public class Calender : MonoBehaviour
         MonthAndYear.text = temp.ToString("MMM") + " " + temp.Year.ToString();
         int startDay = GetMonthStartDay(year, month);
         int endDay = GetTotalNumberOfDays(year, month);
+        //number of weeks generated for each month
+        float WeeksInMonth = 6f;
+        //number of days generated in each week
+        int DaysInWeek = 7;
+        //number of days generated for each month
+        float DaysInMonth = 42f;
 
         //Creating the days
         //This only happens for our first update calender when we have no day objects therefore we must create them
         if (days.Count == 0)
         {
-            for (int w = 0; w < 6; w++)
+            for (int w = 0; w < WeeksInMonth; w++)
             {
-                for (int i = 0; i < 7; i++)
+                for (int i = 0; i < DaysInWeek; i++)
                 {
                     Day newDay;
-                    int currDay = (w * 7) + i;
+                    int currDay = (w * DaysInWeek) + i;
                     if (currDay < startDay || currDay - startDay >= endDay)
                     {
                         newDay = new Day(currDay - startDay, Color.gray, weeks[w].GetChild(i).gameObject);
@@ -101,6 +109,7 @@ public class Calender : MonoBehaviour
                         newDay = new Day(currDay - startDay, Color.white, weeks[w].GetChild(i).gameObject);
                     }
                     days.Add(newDay);
+                    
                 }
             }
         }
@@ -108,7 +117,7 @@ public class Calender : MonoBehaviour
         //since we already have the days objects, we can just update them rather than creating new ones
         else
         {
-            for (int i = 0; i < 42; i++)
+            for (int i = 0; i < DaysInMonth; i++)
             {
                 if(i < startDay || i-startDay >= endDay)
                 {
