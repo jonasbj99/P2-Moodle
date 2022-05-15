@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class IconSwap : MonoBehaviour
 {
-    // Game objects for active page panel, as well as standard and selected icons on the navigation bar
     [SerializeField] GameObject targetPanel;
     [SerializeField] GameObject startIcon;
     [SerializeField] GameObject selectedIcon;
 
-    //If statements in the update function activates and deactivates icons based on the active page panel
     public void Update()
     {
         if (targetPanel.active)
@@ -24,3 +22,7 @@ public class IconSwap : MonoBehaviour
         }
     }
 }
+
+
+//If statements in the update function runs it deactivates icons based on the active page panel
+// Game objects for active page panel, as well as standard and selected icons on the navigation bar

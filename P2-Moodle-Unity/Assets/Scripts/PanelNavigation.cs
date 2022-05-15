@@ -8,7 +8,7 @@ public class PanelNavigation : MonoBehaviour
     //List of game objects accessible in the Unity inspector
     [SerializeField] GameObject[] panels;
 
-    //
+    //Loop for deactivating every panel and reactivating the correct one
     public void PanelChange(GameObject activePanel)
     {
         for (int i = 0; i < panels.Length; i++)
